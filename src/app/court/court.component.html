@@ -1,7 +1,7 @@
 <table>
-  <tr *ngFor="let r of rows">
+  <tr *ngFor="let r of rowCells">
     <td
-      *ngFor="let c of cols"
+      *ngFor="let c of colCells"
       (click)="cellClicked(r, c)"
       [ngClass]="CalculateCellClass(r, c)"
     >

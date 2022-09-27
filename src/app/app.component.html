@@ -1,0 +1,21 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-6">
+      <button class="btn btn-primary mx-1" (click)="setVideoSize(6)">S</button>
+      <button class="btn btn-primary mx-1" (click)="setVideoSize(7)">M</button>
+      <button class="btn btn-primary mx-1" (click)="setVideoSize(8)">L</button>
+    </div>
+    <div class="col-5"></div>
+    <div class="col-1"></div>
+  </div>
+  <div class="row">
+    <div [ngClass]="ColsForVideo()">
+      <app-video (timeChanged)="videoTimeChanged($event)"></app-video>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div [ngClass]="ColsForVideo()">
+      <app-court [orientation]="'H'"></app-court>
+    </div>
+  </div>
+</div>

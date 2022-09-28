@@ -5,8 +5,9 @@
       <button class="btn btn-primary mx-1" (click)="setVideoSize(7)">M</button>
       <button class="btn btn-primary mx-1" (click)="setVideoSize(8)">L</button>
     </div>
-    <div class="col-5"></div>
-    <div class="col-1"></div>
+    <div class="col-6">
+      <app-players></app-players>
+    </div>
   </div>
   <div class="row">
     <div [ngClass]="ColsForVideo()">

@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Player } from '../model/player';
-import {createClient, SupabaseClient} from '@supabase/supabase-js'
-
-import { environment } from '../environment';
+import { SupabaseService } from '../supabase.service';
 @Component({
   selector: 'app-players',
   templateUrl: './players.component.html',
@@ -10,26 +8,24 @@ import { environment } from '../environment';
 })
 export class PlayersComponent implements OnInit {
   newPlayerName: string = '';
-  players: Player[];
+  players: Player[] = this.supabase.fetchPlayers();
   selectedPlayer;
-  supabase: SupabaseClient;
 
-
-  constructor() {
-    this.supabase = createClient(
-      environment.supabaseUrl,
-      environment.supabaseKey
-    )
-  }
+  constructor(private readonly supabase: SupabaseService) {}
 
   ngOnInit() {}
 
   async addNewPlayer() {
-    var dataError = await this.supabase
-    .from('Players')
-    .insert({
-        name: this.newPlayerName
-    })
+    let { data: player, error } = await this.supabase.AddPlayer(
+      new {
+        name: this.newPlayerName,
+      }()
+    );
 
+    if (error) {
+      alert(error.message);
+    } else {
+      player.push(player);
+    }
   }
 }
